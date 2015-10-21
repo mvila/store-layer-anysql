@@ -151,7 +151,7 @@ export class AnySQLStoreLayer extends AbstractStoreLayer {
   }
 
   // options: prefix, start, startAfter, end, endBefore
-  async getCount(options = {}) {
+  async countRange(options = {}) {
     options = this.normalizeKeySelectors(options);
     await this.initializeDatabase();
     let sql = 'SELECT COUNT(*) FROM `pairs` WHERE `key` BETWEEN ? AND ?';
