@@ -1,6 +1,6 @@
 # store-layer-anysql [![Build Status](https://travis-ci.org/object-layer/store-layer-anysql.svg?branch=master)](https://travis-ci.org/object-layer/store-layer-anysql)
 
-Transactional key-value store layer for any SQL databases.
+Transactional key-value store on top of any SQL database.
 
 ## Documentation
 

@@ -1,7 +1,7 @@
 {
   "name": "store-layer-anysql",
   "version": "0.1.3",
-  "description": "Transactional key-value store layer for any SQL databases",
+  "description": "Transactional key-value store on top of any SQL database",
   "author": "Manuel Vila <mvila@3base.com>",
   "license": "MIT",
   "main": "lib/index.js",
