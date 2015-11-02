@@ -1,10 +1,10 @@
-# store-layer-anysql [![Build Status](https://travis-ci.org/object-layer/store-layer-anysql.svg?branch=master)](https://travis-ci.org/object-layer/store-layer-anysql)
+# AnySQLKeyValueStore [![Build Status](https://travis-ci.org/object-layer/key-value-store-anysql.svg?branch=master)](https://travis-ci.org/object-layer/key-value-store-anysql)
 
 Transactional key-value store on top of any SQL database.
 
 ## Documentation
 
-See [StoreLayer](https://www.npmjs.com/package/store-layer).
+See [KeyValueStore](https://www.npmjs.com/package/key-value-store).
 
 ## License
 

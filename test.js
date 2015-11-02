@@ -1,7 +1,7 @@
 'use strict';
 
 import { assert } from 'chai';
-import AnySQLStoreLayer from './src';
+import AnySQLKeyValueStore from './src';
 
 async function catchError(fn) {
   let err;
@@ -13,11 +13,11 @@ async function catchError(fn) {
   return err;
 }
 
-describe('AnySQLStoreLayer', function() {
+describe('AnySQLKeyValueStore', function() {
   let store;
 
   before(function() {
-    store = new AnySQLStoreLayer('mysql://test@localhost/test');
+    store = new AnySQLKeyValueStore('mysql://test@localhost/test');
   });
 
   it('should put, get and del an object', async function() {

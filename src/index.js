@@ -1,7 +1,7 @@
 'use strict';
 
 import assert from 'assert';
-import AbstractStoreLayer from 'store-layer-abstract';
+import AbstractKeyValueStore from 'key-value-store-abstract';
 import AnySQL from 'anysql';
 import setImmediatePromise from 'set-immediate-promise';
 
@@ -9,7 +9,7 @@ const TABLE_NAME = 'pairs';
 const DEFAULT_LIMIT = 50000;
 const RESPIRATION_RATE = 250;
 
-export class AnySQLStoreLayer extends AbstractStoreLayer {
+export class AnySQLKeyValueStore extends AbstractKeyValueStore {
   constructor(url, options) {
     super(options);
     this.database = new AnySQL(url);
@@ -190,4 +190,4 @@ export class AnySQLStoreLayer extends AbstractStoreLayer {
   }
 }
 
-export default AnySQLStoreLayer;
+export default AnySQLKeyValueStore;
