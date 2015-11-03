@@ -20,16 +20,16 @@ describe('AnySQLKeyValueStore', function() {
     store = new AnySQLKeyValueStore('mysql://test@localhost/test');
   });
 
-  it('should put, get and del an object', async function() {
+  it('should put, get and delete an object', async function() {
     let key = ['users', 'mvila'];
     await store.put(key, { firstName: 'Manu', age: 42 });
     let user = await store.get(key);
     assert.deepEqual(user, { firstName: 'Manu', age: 42 });
-    let hasBeenDeleted = await store.del(key);
+    let hasBeenDeleted = await store.delete(key);
     assert.isTrue(hasBeenDeleted);
     user = await store.get(key, { errorIfMissing: false });
     assert.isUndefined(user);
-    hasBeenDeleted = await store.del(key, { errorIfMissing: false });
+    hasBeenDeleted = await store.delete(key, { errorIfMissing: false });
     assert.isFalse(hasBeenDeleted);
   });
 
@@ -50,7 +50,7 @@ describe('AnySQLKeyValueStore', function() {
       });
       user = await store.get(key);
       assert.strictEqual(user.firstName, 'Vince');
-      await store.del(key);
+      await store.delete(key);
     });
 
     it('should rollback the transaction when an error occurs', async function() {
@@ -78,7 +78,7 @@ describe('AnySQLKeyValueStore', function() {
   });
 
   after(async function() {
-    await store.delRange();
+    await store.findAndDelete();
     await store.close();
   });
 });

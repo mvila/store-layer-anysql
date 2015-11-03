@@ -57,7 +57,7 @@ export class AnySQLKeyValueStore extends AbstractKeyValueStore {
     }
   }
 
-  async del(key, { errorIfMissing = true } = {}) {
+  async delete(key, { errorIfMissing = true } = {}) {
     key = this.normalizeKey(key);
     await this.initializeDatabase();
     let sql = 'DELETE FROM `pairs` WHERE `key`=?';
@@ -121,13 +121,13 @@ export class AnySQLKeyValueStore extends AbstractKeyValueStore {
     // TODO
   }
 
-  async delMany(key, {} = {}) { // eslint-disable-line
+  async deleteMany(key, {} = {}) { // eslint-disable-line
     // TODO
   }
 
   // options: prefix, start, startAfter, end, endBefore,
   //   reverse, limit, returnValues
-  async getRange(options = {}) {
+  async find(options = {}) {
     options = this.normalizeKeySelectors(options);
     options = Object.assign({ limit: DEFAULT_LIMIT, returnValues: true }, options);
     let iterationsCount = 0;
@@ -151,7 +151,7 @@ export class AnySQLKeyValueStore extends AbstractKeyValueStore {
   }
 
   // options: prefix, start, startAfter, end, endBefore
-  async countRange(options = {}) {
+  async count(options = {}) {
     options = this.normalizeKeySelectors(options);
     await this.initializeDatabase();
     let sql = 'SELECT COUNT(*) FROM `pairs` WHERE `key` BETWEEN ? AND ?';
@@ -164,7 +164,7 @@ export class AnySQLKeyValueStore extends AbstractKeyValueStore {
     return res[0]['COUNT(*)'];
   }
 
-  async delRange(options = {}) {
+  async findAndDelete(options = {}) {
     options = this.normalizeKeySelectors(options);
     await this.initializeDatabase();
     let sql = 'DELETE FROM `pairs` WHERE `key` BETWEEN ? AND ?';
