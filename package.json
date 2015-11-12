@@ -1,6 +1,6 @@
 {
   "name": "key-value-store-anysql",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Transactional key-value store on top of any SQL database",
   "author": "Manuel Vila <mvila@3base.com>",
   "license": "MIT",
