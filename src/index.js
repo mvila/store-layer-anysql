@@ -18,11 +18,20 @@ export class AnySQLKeyValueStore extends AbstractKeyValueStore {
   async initializeDatabase() {
     if (this._databaseHasBeenInitialized) return;
     assert(!this.insideTransaction, 'Cannot initialize the database inside a transaction');
-    let definition = '`key` longblob NOT NULL, ';
-    definition += '`value` longblob, ';
-    definition += 'PRIMARY KEY (`key`(256))';
-    let options = { errorIfExists: false };
-    await this.database.createTable(TABLE_NAME, definition, options);
+    let sql = 'CREATE TABLE IF NOT EXISTS ';
+    sql += '`' + TABLE_NAME + '` ';
+    sql += '(';
+    sql += '`key` longblob NOT NULL, ';
+    sql += '`value` longblob, ';
+    let index = '`key`';
+    if (this.database.constructor.supportTruncatedKey) index += '(256)';
+    sql += `PRIMARY KEY (${index})`;
+    sql += ')';
+    if (this.database.constructor.tableCreationOptions) {
+      sql += ' ' + this.database.constructor.tableCreationOptions;
+    }
+    sql += ';';
+    await this.database.query(sql);
     this.root._databaseHasBeenInitialized = true;
   }
 
