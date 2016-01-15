@@ -17,6 +17,7 @@ describe('AnySQLKeyValueStore', function() {
   let store;
 
   before(function() {
+    this.timeout(30000);
     store = new AnySQLKeyValueStore('mysql://test@localhost/test');
   });
 
